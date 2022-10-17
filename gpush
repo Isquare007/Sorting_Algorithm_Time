@@ -29,7 +29,7 @@ do
 	sleep 15
 done
 
-echo "Enter commit message with ("") around it"
+echo "Enter commit message"
 read message
 
 for ((;;));

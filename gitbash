@@ -5,6 +5,6 @@ $(git add $1)
 echo "Enter commit message"
 read commitmessage
 
-echo $(git commit -m commitmessage)
+$(git commit -m commitmessage)
 
 $(git push)

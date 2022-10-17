@@ -5,23 +5,28 @@ $(git add $1)
 echo "Enter commit message with ("") around it"
 read message
 
-if [ !"$message" ]
-then
-        echo "Please enter commit message"
-fi
-
-while [ "$message" ]
+for ((;;));
 do
-	if [ "$message" -eq "cancel" ]
+	if [ "$message" == "cancel" ]
 	then
 		break;
 	fi
 
-	if [ "$message" -eq "Cancel" ]
+	if [ "$message" ==  "Cancel" ]
 	then
-                break;
+		break;
         fi
-
-	echo $(git commit -m message)
-	$(git push)
+	
+	if [ "$message" ]
+	then
+		echo $(git commit -m message)
+		$(git push)
+	fi
+	if [ -n "$message" ]
+        then
+                echo "Please enter commit message"
+		continue;
+        fi
+	echo "Do something; hit [CTRL+C] to stop!"
+	sleep 10
 done

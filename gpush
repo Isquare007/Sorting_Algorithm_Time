@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Enter file name or '.' for all (press stop to cancel)"
-read file
+
 
 for ((;;));
 do
@@ -25,7 +25,6 @@ do
 		break;
 	else
 		echo "Enter file name"
-		read file
 		continue;
 	fi
 	
@@ -33,10 +32,10 @@ do
 done
 
 echo "Enter commit message"
-read message
 
 for ((;;));
 do
+	read message
 	if [ "$message" == "stop" ]
 	then
 		break;
@@ -53,10 +52,9 @@ do
 		$(git push)
 		break;
 	fi
-	if [ -n "$message" ]
+	if [ "$message" == "" ]
         then
                 echo "Please enter commit message"
-		sleep 15
 		continue;
         fi
 	sleep 15

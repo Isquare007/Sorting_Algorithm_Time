@@ -21,6 +21,7 @@ do
 	then
 		echo $(git commit -m message)
 		$(git push)
+		break;
 	fi
 	if [ -n "$message" ]
         then

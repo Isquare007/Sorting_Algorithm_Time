@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+echo "Enter file name or '.' for all (press stop to cancel)"
+read file
+
+for ((;;));
+do
+	if [ "$file" == "stop" ]
+        then
+		kill $$
+        fi
+
+        if [ "$file" ==  "Stop" ]
+        then
+                kill $$
+	fi
+	if [[ -f $file ]]
+	then 
+		echo $(git add $file)
+		break;
+	elif [ "$file" == "." ]
+	then
+		echo $(git add $file)
+		break;
+	else
+		echo "Enter file name"
+	fi
+	
+	sleep 15
+done
+
+echo "Enter commit message with ("") around it"
+read message
+
+for ((;;));
+do
+	if [ "$message" == "stop" ]
+	then
+		break;
+	fi
+
+	if [ "$message" ==  "Stop" ]
+	then
+		break;
+        fi
+	
+	if [ "$message" ]
+	then
+		echo $(git commit -m $message)
+		$(git push)
+		break;
+	fi
+	if [ -n "$message" ]
+        then
+                echo "Please enter commit message"
+		continue;
+        fi
+	echo "Do something; hit [CTRL+C] to stop!"
+	sleep 15
+done

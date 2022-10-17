@@ -2,9 +2,19 @@
 
 $(git add $1)
 
-echo "Enter commit message"
-read commitmessage
+echo "Enter commit message with ("") around it"
+read message
 
-$(git commit -m commitmessage)
-
-$(git push)
+case $message in
+#	"") echo "Please enter commit message";;
+	"Cancel") return;;
+	"cancel") return;;
+esac
+	
+if [ "$message" ]
+then
+	echo $(git commit -m message)
+	$(git push)
+else
+	echo "Please enter commit message"
+fi

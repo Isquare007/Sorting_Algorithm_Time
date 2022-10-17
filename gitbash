@@ -19,7 +19,7 @@ do
 	
 	if [ "$message" ]
 	then
-		echo $(git commit -m message)
+		echo $(git commit -m $message)
 		$(git push)
 		break;
 	fi

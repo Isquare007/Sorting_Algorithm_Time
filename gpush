@@ -5,6 +5,7 @@ read file
 
 for ((;;));
 do
+	read file
 	if [ "$file" == "stop" ]
         then
 		kill $$
@@ -24,6 +25,8 @@ do
 		break;
 	else
 		echo "Enter file name"
+		read file
+		continue;
 	fi
 	
 	sleep 15
@@ -53,8 +56,8 @@ do
 	if [ -n "$message" ]
         then
                 echo "Please enter commit message"
+		sleep 15
 		continue;
         fi
-	echo "Do something; hit [CTRL+C] to stop!"
 	sleep 15
 done
